@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Shopping Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased font-sans text-gray-800">
+
+    <div id="app-container">
+        <header class="app-header">
+            <h1 class="text-2xl font-bold text-white tracking-tight">Shopping List</h1>
+            <div id="loading-spinner" class="spinner hidden"></div>
+        </header>
+
+        <main class="app-main">
+            <div id="shopping-list-card" class="card">
+                <ul id="shopping-list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <!-- Items will be injected here by JavaScript -->
+                    <li id="placeholder" class="text-center py-10 text-gray-400">
+                        <i class="fas fa-cart-plus fa-2x mb-2"></i>
+                        <p>Your shopping list is empty.</p>
+                        <p class="text-sm">Use the mic to add items!</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="controls-card" class="card">
+                <div class="mic-container">
+                     <button id="mic-btn" class="mic-button">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <p id="feedback-text" class="feedback"></p>
+            </div>
+            
+            <div id="smart-actions-card" class="card">
+                 <h2 class="card-title">Smart Actions</h2>
+                 <div id="suggestions" class="suggestions-container">
+                    <!-- Suggestions will be injected here -->
+                 </div>
+                 <div class="smart-buttons-container">
+                    <button id="smart-suggestion-btn" class="smart-button">
+                        <i class="fas fa-lightbulb mr-2"></i>Get Ideas
+                    </button>
+                    <button id="get-recipe-btn" class="smart-button" disabled>
+                        <i class="fas fa-utensils mr-2"></i>Get Recipes
+                    </button>
+                 </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Recipe Modal -->
+    <div id="recipe-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="text-xl font-semibold">Recipe Idea</h3>
+                <button id="close-recipe-modal-btn" class="modal-close-button">&times;</button>
+            </div>
+            <div id="recipe-modal-content" class="p-6">
+                <!-- Recipe content from Gemini -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="error-modal" class="modal-overlay hidden">
+        <div class="modal-content modal-error">
+            <div class="modal-header">
+                <h3 class="text-xl font-semibold text-red-700"><i class="fas fa-exclamation-triangle mr-2"></i>Item Not Found</h3>
+                <button id="close-error-modal-btn" class="modal-close-button">&times;</button>
+            </div>
+            <div id="error-modal-content" class="p-6">
+                <!-- Error message will be injected here -->
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./nlp.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
+
